@@ -79,6 +79,59 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/02/01/git学习/" title="git学习" itemprop="url">git学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-01T12:04:41.141Z" itemprop="datePublished"> 发表于 2016-02-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>git：强大的分布式版本管理工具</p>
+<h2 id="u547D_u4EE4_u8BE6_u89E3"><a href="#u547D_u4EE4_u8BE6_u89E3" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="git_rebase"><a href="#git_rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。</p>
+<p><strong>应用场景</strong>：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自己的补丁之 后，往往需要将自己的工作更新到最新的版本库，也就是说把别的分支的工作包含进来。<br>理解：主要是在多分枝场景中。当我们从自己创建一个分枝的时候，并进行了多次提交。如果此时主分支也在不断前进提交。我们需要保持与主分支同步。此时就可以rebase。效果就如同我们从最新的主分支建立的分支一样。即我们分支的base变了，往前推进了，与主分支保持了一直。当然这过程可能会产生冲突，我们需要解决冲突，并rebase-continue; 他跟merge功能 基本类似，只是操作完之后的git版本结构变了。 </p>
+<p><img src="http://i.imgur.com/cZqOS3Y.png" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/02/01/Android系统的build过程分析/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
@@ -295,59 +348,6 @@ LOCAL_MODULE := sample
 # 将当前模块编译成一个静态的 Java 库
 include $(BUILD_STATIC_JAVA_LIBRARY)
 </code></pre><h1 id="u7ED3_u675F_u8BED"><a href="#u7ED3_u675F_u8BED" class="headerlink" title="结束语"></a>结束语</h1><p>  整个 Build 系统包含了非常多的内容，由于篇幅所限，本文只能介绍其中最主要内容。<br>由于 Build 系统本身也是在随着 Android 平台不断的开发过程中，所以不同的版本其中的内容和定义可能会发生变化。网络上关于该部分的资料很零碎，并且很多资料中的一些内容已经过时不再适用，再加上缺少官方文档，所以该部分的学习存在一定的难度。<br>这就要求我们要有很强的代码阅读能力，毕竟代码是不会说谎的。 要知道，对于我们这些开发人员来说，源代码就是我们最忠实的朋友。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/02/01/git学习/" title="git学习" itemprop="url">git学习</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
-		
-  <p class="article-time">
-    <time datetime="2016-02-01T12:01:32.780Z" itemprop="datePublished"> 发表于 2016-02-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="git_u5B66_u4E60"><a href="#git_u5B66_u4E60" class="headerlink" title="git学习"></a>git学习</h1><p>git：强大的分布式版本管理工具</p>
-<h2 id="u547D_u4EE4_u8BE6_u89E3"><a href="#u547D_u4EE4_u8BE6_u89E3" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="git_rebase"><a href="#git_rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。</p>
-<p><strong>应用场景</strong>：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自己的补丁之 后，往往需要将自己的工作更新到最新的版本库，也就是说把别的分支的工作包含进来。<br>理解：主要是在多分枝场景中。当我们从自己创建一个分枝的时候，并进行了多次提交。如果此时主分支也在不断前进提交。我们需要保持与主分支同步。此时就可以rebase。效果就如同我们从最新的主分支建立的分支一样。即我们分支的base变了，往前推进了，与主分支保持了一直。当然这过程可能会产生冲突，我们需要解决冲突，并rebase-continue; 他跟merge功能 基本类似，只是操作完之后的git版本结构变了。 </p>
-<p><img src="http://i.imgur.com/cZqOS3Y.png" alt=""></p>
 
         
         
