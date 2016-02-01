@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://i.imgur.com/RFbqXIt.png">
 <meta property="og:image" content="http://i.imgur.com/lVbluET.png">
 <meta property="og:image" content="http://i.imgur.com/dip1omo.png">
-<meta property="og:updated_time" content="2016-02-01T11:35:03.435Z">
+<meta property="og:updated_time" content="2016-02-01T11:43:23.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elicec">
 <meta name="twitter:description" content="前言Android Build 系统是 Android 源码的一部分。关于如何获取 Android 源码，请参照 Android Source 官方网站：http://source.android.com/source/downloading.html。Android Build 系统用来编译 Android 系统，Android SDK 以及相关文档。该系统主要由 Make 文件，Shell 脚">
@@ -90,7 +90,7 @@
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-01T11:35:03.435Z" itemprop="datePublished"> 发表于 2016-02-01</time>
+    <time datetime="2016-02-01T11:43:23.656Z" itemprop="datePublished"> 发表于 2016-02-01</time>
     
   </p>
 </header>
@@ -106,7 +106,7 @@
 		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>Android Build 系统是 Android 源码的一部分。关于如何获取 Android 源码，请参照 Android Source 官方网站：<br><a href="http://source.android.com/source/downloading.html。" target="_blank" rel="external">http://source.android.com/source/downloading.html。</a><br>Android Build 系统用来编译 Android 系统，Android SDK 以及相关文档。该系统主要由 Make 文件，Shell 脚本以及 Python 脚本组成，其中最主要的是 Make 文件。<br>众所周知，Android 是一个开源的操作系统。Android 的源码中包含了大量的开源项目以及许多的模块。不同产商的不同设备对于 Android 系统的定制都是不一样的。<br>如何将这些项目和模块的编译统一管理起来，如何能够在不同的操作系统上进行编译，如何在编译时能够支持面向不同的硬件设备，不同的编译类型，且还要提供面向各个产商的定制扩展，是非常有难度的。<br>但 Android Build 系统很好的解决了这些问题，这里面有很多值得我们开发人员学习的地方。<br>对于 Android 平台开发人员来说，本文可以帮助你熟悉你每天接触到的构建环境。<br>对于其他开发人员来说，本文可以作为一个 GNU Make 的使用案例，学习这些成功案例，可以提升我们的开发经验。</p>
 <h1 id="u6982_u8FF0"><a href="#u6982_u8FF0" class="headerlink" title="概述"></a>概述</h1><p>Build 系统中最主要的处理逻辑都在 Make 文件中，而其他的脚本文件只是起到一些辅助作用，由于篇幅所限，本文只探讨 Make 文件中的内容。<br>整个 Build 系统中的 Make 文件可以分为三类：<br>第一类是 Build 系统核心文件，此类文件定义了整个 Build 系统的框架，而其他所有 Make 文件都是在这个框架的基础上编写出来的。<br>图 1 是 Android 源码树的目录结构，Build 系统核心文件全部位于 /build/core（本文所提到的所有路径都是以 Android 源码树作为背景的，“/”指的是源码树的根目录，与文件系统无关）目录下。<br><strong>图 1. Android 源码树的目录结构</strong><br><img src="http://i.imgur.com/TbanHXZ.png" alt=""></p>
 <p>第二类是针对某个产品（一个产品可能是某个型号的手机或者平板电脑）的 Make 文件，这些文件通常位于 device 目录下，该目录下又以公司名以及产品名分为两级目录，图 2 是 device 目录下子目录的结构。对于一个产品的定义通常需要一组文件，这些文件共同构成了对于这个产品的定义。例如，/device/sony/it26 目录下的文件共同构成了对于 Sony LT26 型号手机的定义。<br><strong>图 2. device 目录下子目录的结构</strong><br><img src="http://i.imgur.com/egiw3za.png" alt=""></p>
-<p>第三类是针对某个模块（关于模块后文会详细讨论）的 Make 文件。整个系统中，包含了大量的模块，每个模块都有一个专门的 Make 文件，这类文件的名称统一为“Android.mk”，该文件中定义了如何编译当前模块。Build 系统会在整个源码树中扫描名称为“Android.mk”的文件并根据其中的内容执行模块的编译。<br>回页首</p>
+<p>第三类是针对某个模块（关于模块后文会详细讨论）的 Make 文件。整个系统中，包含了大量的模块，每个模块都有一个专门的 Make 文件，这类文件的名称统一为“Android.mk”，该文件中定义了如何编译当前模块。Build 系统会在整个源码树中扫描名称为“Android.mk”的文件并根据其中的内容执行模块的编译。</p>
 <h1 id="u7F16_u8BD1_Android__u7CFB_u7EDF"><a href="#u7F16_u8BD1_Android__u7CFB_u7EDF" class="headerlink" title="编译 Android 系统"></a>编译 Android 系统</h1><h2 id="u6267_u884C_u7F16_u8BD1"><a href="#u6267_u884C_u7F16_u8BD1" class="headerlink" title="执行编译"></a>执行编译</h2><p>Android 系统的编译环境目前只支持 Ubuntu 以及 Mac OS 两种操作系统。关于编译环境的构建方法请参见以下路径：<a href="http://source.android.com/source/initializing.html" target="_blank" rel="external">http://source.android.com/source/initializing.html</a><br>在完成编译环境的准备工作以及获取到完整的 Android 源码之后，想要编译出整个 Android 系统非常的容易：<br>打开控制台之后转到 Android 源码的根目录，然后执行如清单 1 所示的三条命令即可（”$”是命令提示符，不是命令的一部分。）：<br>完整的编译时间依赖于编译主机的配置，在笔者的 Macbook Pro（OS X 10.8.2, i7 2G CPU，8G RAM, 120G SSD）上使用 8 个 Job 同时编译共需要一个半小时左右的时间。</p>
 <h3 id="u6E05_u5355_1-__u7F16_u8BD1_Android__u7CFB_u7EDF"><a href="#u6E05_u5355_1-__u7F16_u8BD1_Android__u7CFB_u7EDF" class="headerlink" title="清单 1. 编译 Android 系统"></a>清单 1. 编译 Android 系统</h3><pre><code>$ source build/envsetup.sh 
 $ lunch full-eng 
@@ -329,6 +329,19 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
    	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/02/01/git学习持续更新/" title="">
+  <strong>上一篇：</strong><br/>
+  <span>
+  (no title)</span>
+</a>
+</div>
+
+
+</nav>
+
 	
 
 </div>  
