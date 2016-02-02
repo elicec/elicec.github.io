@@ -11,52 +11,64 @@
     
 
     
-    <meta name="description" content="步骤概览
+    <meta name="description" content="从本文你学到的东西
+
+如何下载Android源码
+
+如何编译Android源码
+
+如何在Linux下分区
+
+如何将Android镜像移植到raspberrypi
+
+
+步骤概览
 下载raspberry2的Linux内核和Android源码
 编译raspberry2的Linux内核生成zImage内核镜像
 编译Android系统，生成system.img系统镜像和ramdisk.img镜像
-对SD卡分区
-将编译好的镜像文件写入分好区的SD卡
-
-下载Linux内核和Android源码
-Android版本：Marshmallow(android 6.0.1) 
-
-
-编">
+对SD卡分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="raspberryPi2 移植Android系统">
 <meta property="og:url" content="http://yoursite.com/2016/02/02/树莓派2移植Android系统/index.html">
 <meta property="og:site_name" content="elicec">
-<meta property="og:description" content="步骤概览
+<meta property="og:description" content="从本文你学到的东西
+
+如何下载Android源码
+
+如何编译Android源码
+
+如何在Linux下分区
+
+如何将Android镜像移植到raspberrypi
+
+
+步骤概览
 下载raspberry2的Linux内核和Android源码
 编译raspberry2的Linux内核生成zImage内核镜像
 编译Android系统，生成system.img系统镜像和ramdisk.img镜像
-对SD卡分区
-将编译好的镜像文件写入分好区的SD卡
-
-下载Linux内核和Android源码
-Android版本：Marshmallow(android 6.0.1) 
-
-
-编">
+对SD卡分">
 <meta property="og:image" content="http://i.imgur.com/PRWz66E.jpg">
 <meta property="og:image" content="http://i.imgur.com/wcnpgYi.jpg">
 <meta property="og:image" content="http://i.imgur.com/ytx8l93.jpg">
-<meta property="og:updated_time" content="2016-02-02T08:48:38.451Z">
+<meta property="og:updated_time" content="2016-02-02T08:57:38.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="raspberryPi2 移植Android系统">
-<meta name="twitter:description" content="步骤概览
+<meta name="twitter:description" content="从本文你学到的东西
+
+如何下载Android源码
+
+如何编译Android源码
+
+如何在Linux下分区
+
+如何将Android镜像移植到raspberrypi
+
+
+步骤概览
 下载raspberry2的Linux内核和Android源码
 编译raspberry2的Linux内核生成zImage内核镜像
 编译Android系统，生成system.img系统镜像和ramdisk.img镜像
-对SD卡分区
-将编译好的镜像文件写入分好区的SD卡
-
-下载Linux内核和Android源码
-Android版本：Marshmallow(android 6.0.1) 
-
-
-编">
+对SD卡分">
 
     
     <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
@@ -121,7 +133,7 @@ Android版本：Marshmallow(android 6.0.1)
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-02T08:48:38.451Z" itemprop="datePublished"> 发表于 2016-02-02</time>
+    <time datetime="2016-02-02T08:57:38.065Z" itemprop="datePublished"> 发表于 2016-02-02</time>
     
   </p>
 </header>
@@ -130,11 +142,22 @@ Android版本：Marshmallow(android 6.0.1)
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="u6B65_u9AA4_u6982_u89C8"><a href="#u6B65_u9AA4_u6982_u89C8" class="headerlink" title="步骤概览"></a>步骤概览</h2><ol>
+		<p>从本文你学到的东西</p>
+<ul>
+<li><p>如何下载Android源码</p>
+</li>
+<li><p>如何编译Android源码</p>
+</li>
+<li><p>如何在Linux下分区</p>
+</li>
+<li><p>如何将Android镜像移植到raspberrypi</p>
+</li>
+</ul>
+<h2 id="u6B65_u9AA4_u6982_u89C8"><a href="#u6B65_u9AA4_u6982_u89C8" class="headerlink" title="步骤概览"></a>步骤概览</h2><ol>
 <li>下载raspberry2的Linux内核和Android源码</li>
 <li>编译raspberry2的Linux内核生成<code>zImage</code>内核镜像</li>
 <li>编译Android系统，生成<code>system.img</code>系统镜像和<code>ramdisk.img</code>镜像</li>
@@ -270,8 +293,7 @@ $ make -j4  //4代表同时编译的线程数目，例如双核四线程电脑�
 </tr>
 </tbody>
 </table>
-<p>###写入Android镜像</p>
-<pre><code>$ cd out/target/product/rpi2
+<h3 id="u5199_u5165Android_u955C_u50CF"><a href="#u5199_u5165Android_u955C_u50CF" class="headerlink" title="写入Android镜像"></a>写入Android镜像</h3><pre><code>$ cd out/target/product/rpi2
 $ sudo dd if=system.img of=/dev/&lt;p2&gt; bs=1M  //p2代表分区二在系统中挂载的名字，例如我的挂载为sdb2,外接usb存储设备都挂载在/dev/sd*下，具体名字可以在GParted中看到
 </code></pre><p>上一步中Android系统编译完成后会在<code>out/target/product/rpi2</code>中生成<code>system.img</code>镜像文件。dd命令将其写入<code>P2</code>分区</p>
 <p>接着将所需的其他文件直接拷贝到<code>p1</code>分区即boot目录（直接拷贝），总共8个：</p>
@@ -324,7 +346,7 @@ out/target/product/rpi2/ramdisk.img
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li></ol>
  
   </div>
 
