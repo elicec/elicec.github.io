@@ -1,0 +1,620 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>raspberryPi2 移植Android系统 | elicec</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="elicec">
+    
+
+    
+    <meta name="description" content="步骤概览
+下载raspberry2的Linux内核和Android源码
+编译raspberry2的Linux内核生成zImage内核镜像
+编译Android系统，生成system.img系统镜像和ramdisk.img镜像
+对SD卡分区
+将编译好的镜像文件写入分好区的SD卡
+
+下载Linux内核和Android源码
+Android版本：Marshmallow(android 6.0.1) 
+
+
+编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="raspberryPi2 移植Android系统">
+<meta property="og:url" content="http://yoursite.com/2016/02/02/树莓派2移植Android系统/index.html">
+<meta property="og:site_name" content="elicec">
+<meta property="og:description" content="步骤概览
+下载raspberry2的Linux内核和Android源码
+编译raspberry2的Linux内核生成zImage内核镜像
+编译Android系统，生成system.img系统镜像和ramdisk.img镜像
+对SD卡分区
+将编译好的镜像文件写入分好区的SD卡
+
+下载Linux内核和Android源码
+Android版本：Marshmallow(android 6.0.1) 
+
+
+编">
+<meta property="og:image" content="http://i.imgur.com/PRWz66E.jpg">
+<meta property="og:image" content="http://i.imgur.com/wcnpgYi.jpg">
+<meta property="og:image" content="http://i.imgur.com/ytx8l93.jpg">
+<meta property="og:updated_time" content="2016-02-02T08:48:38.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="raspberryPi2 移植Android系统">
+<meta name="twitter:description" content="步骤概览
+下载raspberry2的Linux内核和Android源码
+编译raspberry2的Linux内核生成zImage内核镜像
+编译Android系统，生成system.img系统镜像和ramdisk.img镜像
+对SD卡分区
+将编译好的镜像文件写入分好区的SD卡
+
+下载Linux内核和Android源码
+Android版本：Marshmallow(android 6.0.1) 
+
+
+编">
+
+    
+    <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="elicec">elicec</a></h1>
+				<h2 class="blog-motto">elicec&#39;s blog</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/">简历</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/02/树莓派2移植Android系统/" title="raspberryPi2 移植Android系统" itemprop="url">raspberryPi2 移植Android系统</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-02T08:48:38.451Z" itemprop="datePublished"> 发表于 2016-02-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u6B65_u9AA4_u6982_u89C8"><a href="#u6B65_u9AA4_u6982_u89C8" class="headerlink" title="步骤概览"></a>步骤概览</h2><ol>
+<li>下载raspberry2的Linux内核和Android源码</li>
+<li>编译raspberry2的Linux内核生成<code>zImage</code>内核镜像</li>
+<li>编译Android系统，生成<code>system.img</code>系统镜像和<code>ramdisk.img</code>镜像</li>
+<li>对SD卡分区</li>
+<li>将编译好的镜像文件写入分好区的SD卡</li>
+</ol>
+<h2 id="u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><a href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801" class="headerlink" title="下载Linux内核和Android源码"></a>下载Linux内核和Android源码</h2><ul>
+<li>Android版本：Marshmallow(android 6.0.1) </li>
+</ul>
+<ul>
+<li>编译平台：Ubuntu 14.04 64bit （<strong>下载加编译至少准备100G硬盘空间</strong>）</li>
+</ul>
+<h3 id="u4E0B_u8F7DAndroid_u6E90_u7801"><a href="#u4E0B_u8F7DAndroid_u6E90_u7801" class="headerlink" title="下载Android源码"></a>下载Android源码</h3><p>下载Android源码可以参考官方网站<a href="http://source.android.com/source/downloading.html。" target="_blank" rel="external">http://source.android.com/source/downloading.html。</a><br>但是考虑到国内无法访问Google，以下采用国内tuna清华镜像下载。<br>步骤如下：</p>
+<blockquote>
+<p><strong>1.下载repo工具</strong></p>
+</blockquote>
+<pre><code>//其中bin目录建立在当前用户文件夹下即可。
+mkdir ~/bin
+PATH=~/bin:$PATH
+curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo
+chmod a+x ~/bin/repo
+</code></pre><blockquote>
+<p><strong>2.建立工作目录:</strong></p>
+</blockquote>
+<pre><code>//工作目录为Android源代码下载保存的位置。名称任意。
+mkdir WORKING_DIRECTORY
+cd WORKING_DIRECTORY
+</code></pre><blockquote>
+<p><strong>3.初始化仓库:</strong></p>
+</blockquote>
+<ul>
+<li><p>首先得编辑~/bin/repo文件修改<code>REPO_URL</code>变量,操作如下：</p>
+<p>  //打开刚才下载的repo文件，也可以用gedit或者vim等任何文本编辑器打开<br>  nano ~/bin/repo<br>  //找到REPO_URL，并修改为<br>  REPO_URL = ‘<a href="https://gerrit-google.tuna.tsinghua.edu.cn/git-repo" target="_blank" rel="external">https://gerrit-google.tuna.tsinghua.edu.cn/git-repo</a>‘</p>
+</li>
+<li><p>在工作目录初始化仓库</p>
+</li>
+</ul>
+<pre><code>repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-6.0.1_r10
+//或 repo init -u git://aosp.tuna.tsinghua.edu.cn/aosp/platform/manifest -b android-6.0.1_r10
+</code></pre><p>如果需要特定的Android包可以修改后面的-b android-6.0.1_r10</p>
+<ul>
+<li>下载raspberrypi2用的manifests文件到repo。这样可以repo到树莓派相关的硬件文件</li>
+</ul>
+<pre><code>$ cd .repo // .repo位于刚才下载repo的bin目录
+$ git clone https://github.com/peyo-hd/local_manifests -b marshmallow
+</code></pre><blockquote>
+<p><strong>4. 最后就可以下载源码了</strong></p>
+</blockquote>
+<p>在你刚才新建的工作目录执行<code>repo sync</code>, 下载过程很长，可能需要好几天，当下载中途出错，可以执行<code>repo sync</code>，便可以自动继续下载</p>
+<h2 id="u7F16_u8BD1Linux_u5185_u6838"><a href="#u7F16_u8BD1Linux_u5185_u6838" class="headerlink" title="编译Linux内核"></a>编译Linux内核</h2><h3 id="u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><a href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA" class="headerlink" title="交叉编译环境的搭建"></a>交叉编译环境的搭建</h3><blockquote>
+<p><strong>下载交叉编译</strong></p>
+</blockquote>
+<p>在raspberrypi的github官方主页的tools仓库有交叉编译环境，地址如下<br><a href="https://github.com/raspberrypi/tools/tree/master/arm-bcm2708" target="_blank" rel="external">https://github.com/raspberrypi/tools/tree/master/arm-bcm2708</a></p>
+<p><img src="http://i.imgur.com/PRWz66E.jpg" alt=""><br>该目录中有总共有四个编译环境，根据不同的编译平台，我选用的是<code>gcc-linaro-arm-linux-gnueabihf-raspbian</code><br>下载到Ubuntu任意目录。</p>
+<blockquote>
+<p><strong>设置其环境变量</strong></p>
+</blockquote>
+<pre><code>gedit /etc/profile  //打开profile文件
+</code></pre><p>最末尾添加</p>
+<pre><code>PATH=&quot;$PATH:/home/van/tools-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin&quot;
+export PATH
+</code></pre><p>执行 <code>source /etc/profile</code>使之立即生效</p>
+<blockquote>
+<p><strong>编译Linux内核</strong></p>
+</blockquote>
+<pre><code>$ cd kernel/rpi //内核下载的目录位于建立的下载Android的工作目录
+$ ARCH=arm scripts/kconfig/merge_config.sh arch/arm/configs/bcm2709_defconfig android/configs/android-base.cfg android/configs/android-recommended.cfg
+$ ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make zImage
+$ ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make dtbs
+</code></pre><blockquote>
+<p><strong>编译Android系统</strong></p>
+</blockquote>
+<p>在开始编译Android系统之前，需要先修改framework中的一个可能导致的bug，文件<code>GestureDetector.java</code><br>在490行onTouchEvent中添加如下switch几句话：</p>
+<pre><code>core/java/android/view/GestureDetector.java
+ @@ line 490 @@ public class GestureDetector {
+ public boolean onTouchEvent(MotionEvent ev) {
+ + switch(ev.getAction() &amp; MotionEvent.ACTION_MASK) {
+ + case MotionEvent.ACTION_HOVER_MOVE:
+ + case MotionEvent.ACTION_HOVER_ENTER:
+ + case MotionEvent.ACTION_HOVER_EXIT:
+ + case MotionEvent.ACTION_BUTTON_PRESS:
+ + case MotionEvent.ACTION_BUTTON_RELEASE:
+ + case MotionEvent.ACTION_SCROLL:
+ + return false;
+ + }
+  if (mInputEventConsistencyVerifier != null) {
+</code></pre><p>接着，可以开始编译Android系统了，切换到Android源码目录</p>
+<pre><code>$ source build/envsetup.sh
+$ lunch rpi2-eng //也可以直接执行lunch不带参数，那样会弹出所有的target供选择
+$ make -j4  //4代表同时编译的线程数目，例如双核四线程电脑就 j4
+</code></pre><p>编译时间根据cpu性能而不同，一般4小时左完成。</p>
+<h2 id="u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><a href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF" class="headerlink" title="向SD卡写入内核和系统"></a>向SD卡写入内核和系统</h2><p><strong>如何将编译好的系统写入sd卡可以参考我在YouTube上找到一个视频，非常详细~包括如何分区，如何写入镜像等等</strong><br><a href="http://v.youku.com/v_show/id_XMTQ2MzY2MzA1Ng==.html" title="视频" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTQ2MzY2MzA1Ng==.html</a></p>
+<p>下面是简短的文字描述攻参考</p>
+<h3 id="SD_u5361_u5206_u533A"><a href="#SD_u5361_u5206_u533A" class="headerlink" title="SD卡分区"></a>SD卡分区</h3><p>分区工具，Ubuntu自带的Gparted</p>
+<p><img src="http://i.imgur.com/wcnpgYi.jpg" alt=""></p>
+<p>总共分四个区</p>
+<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>大小</th>
+<th>格式</th>
+<th>label</th>
+<th>flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p1</code></td>
+<td>512M</td>
+<td>Fat32</td>
+<td>boot</td>
+<td>*boot</td>
+</tr>
+<tr>
+<td><code>p2</code></td>
+<td>537M</td>
+<td>ext4</td>
+<td>system</td>
+<td></td>
+</tr>
+<tr>
+<td><code>p3</code></td>
+<td>512M</td>
+<td>ext4</td>
+<td>cache</td>
+</tr>
+<tr>
+<td><code>p4</code></td>
+<td>剩余全部</td>
+<td>ext4</td>
+<td>data</td>
+</tr>
+</tbody>
+</table>
+<p>###写入Android镜像</p>
+<pre><code>$ cd out/target/product/rpi2
+$ sudo dd if=system.img of=/dev/&lt;p2&gt; bs=1M  //p2代表分区二在系统中挂载的名字，例如我的挂载为sdb2,外接usb存储设备都挂载在/dev/sd*下，具体名字可以在GParted中看到
+</code></pre><p>上一步中Android系统编译完成后会在<code>out/target/product/rpi2</code>中生成<code>system.img</code>镜像文件。dd命令将其写入<code>P2</code>分区</p>
+<p>接着将所需的其他文件直接拷贝到<code>p1</code>分区即boot目录（直接拷贝），总共8个：</p>
+<pre><code>device/brcm/rpi2/boot/*下的所有文件：`bootcode.bin,cmdline.txt,config.txt,fixup.dat,start.elf`
+kernel/rpi/arch/arm/boot/zImage
+kernel/rpi/arch/arm/boot/dts/bcm2709-rpi-2-b.dtb
+out/target/product/rpi2/ramdisk.img
+</code></pre><p>复制完成后就可以给raspberry上电，启动了。<br><img src="http://i.imgur.com/ytx8l93.jpg" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/02/02/树莓派2移植Android系统/" data-title="raspberryPi2 移植Android系统 | elicec" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/01/Android系统的build过程分析/"  title="Android系统的build过程分析">
+ <strong>下一篇：</strong><br/> 
+ <span>Android系统的build过程分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://www.bing.com" target="_blank" title="好于百度差于Google">搜索引擎</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+  
+<div class="donate">
+<p class="asidetitle">捐赠</p>
+<div>
+<li>微信扫一扫，捐助支持，谢谢！</li>
+<a href="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg" title="" class="fancybox" rel="gallery3"><img width="100%" src="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg"></a>
+</div>
+</div>
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m elicec in China. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/elicec" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:elicec@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="elicec">elicec</a>
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<br/>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
