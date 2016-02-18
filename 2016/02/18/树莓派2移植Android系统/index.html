@@ -29,7 +29,7 @@
 对SD卡分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="raspberryPi2 移植Android系统">
-<meta property="og:url" content="http://yoursite.com/2016/02/02/树莓派2移植Android系统/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/02/18/树莓派2移植Android系统/index.html">
 <meta property="og:site_name" content="elicec">
 <meta property="og:description" content="从本文你学到的东西
 
@@ -50,7 +50,7 @@
 <meta property="og:image" content="http://i.imgur.com/PRWz66E.jpg">
 <meta property="og:image" content="http://i.imgur.com/wcnpgYi.jpg">
 <meta property="og:image" content="http://i.imgur.com/ytx8l93.jpg">
-<meta property="og:updated_time" content="2016-02-02T09:50:18.357Z">
+<meta property="og:updated_time" content="2016-02-18T12:49:17.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="raspberryPi2 移植Android系统">
 <meta name="twitter:description" content="从本文你学到的东西
@@ -126,14 +126,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/02/02/树莓派2移植Android系统/" title="raspberryPi2 移植Android系统" itemprop="url">raspberryPi2 移植Android系统</a>
+      <a href="/2016/02/18/树莓派2移植Android系统/" title="raspberryPi2 移植Android系统" itemprop="url">raspberryPi2 移植Android系统</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-02T09:50:18.357Z" itemprop="datePublished"> 发表于 2016-02-02</time>
+    <time datetime="2016-02-18T12:49:17.744Z" itemprop="datePublished"> 发表于 2016-02-18</time>
     
   </p>
 </header>
@@ -142,7 +142,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898"><span class="toc-number">5.</span> <span class="toc-text">可能遇到的问题</span></a></li></ol>
 		
 		</div>
 		
@@ -302,6 +302,7 @@ kernel/rpi/arch/arm/boot/zImage
 kernel/rpi/arch/arm/boot/dts/bcm2709-rpi-2-b.dtb
 out/target/product/rpi2/ramdisk.img
 </code></pre><p>复制完成后就可以给raspberry上电，启动了。<br><img src="http://i.imgur.com/ytx8l93.jpg" alt=""></p>
+<h2 id="u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898"><a href="#u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><p>问题：用HDMI口连接显示器是，显示器提示分辨率无法匹配。或者黑屏。<br>解决：在config.txt中加 hdmi_ignore_edid=0xa5000080。这样可以不用理会显示器具体，配置，而是强制输出到显示器。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -324,7 +325,7 @@ out/target/product/rpi2/ramdisk.img
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/02/02/树莓派2移植Android系统/" data-title="raspberryPi2 移植Android系统 | elicec" data-tsina="2740254071" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/02/18/树莓派2移植Android系统/" data-title="raspberryPi2 移植Android系统 | elicec" data-tsina="2740254071" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -337,20 +338,20 @@ out/target/product/rpi2/ramdisk.img
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/02/02/Android系统的build过程分析/" title="Android系统的build过程分析">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Android系统的build过程分析</span>
+
+<div class="next">
+<a href="/2016/02/02/git学习/"  title="git学习">
+ <strong>下一篇：</strong><br/> 
+ <span>git学习
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/02/02/树莓派2移植Android系统/" data-title="raspberryPi2 移植Android系统" data-url="http://yoursite.com/2016/02/02/树莓派2移植Android系统/"></div>
+	<div class="ds-thread" data-thread-key="2016/02/18/树莓派2移植Android系统/" data-title="raspberryPi2 移植Android系统" data-url="http://yoursite.com/2016/02/18/树莓派2移植Android系统/"></div>
 </section>
 
 
@@ -360,7 +361,7 @@ out/target/product/rpi2/ramdisk.img
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6B65_u9AA4_u6982_u89C8"><span class="toc-number">1.</span> <span class="toc-text">步骤概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7DLinux_u5185_u6838_u548CAndroid_u6E90_u7801"><span class="toc-number">2.</span> <span class="toc-text">下载Linux内核和Android源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0B_u8F7DAndroid_u6E90_u7801"><span class="toc-number">2.1.</span> <span class="toc-text">下载Android源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u8BD1Linux_u5185_u6838"><span class="toc-number">3.</span> <span class="toc-text">编译Linux内核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u53C9_u7F16_u8BD1_u73AF_u5883_u7684_u642D_u5EFA"><span class="toc-number">3.1.</span> <span class="toc-text">交叉编译环境的搭建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411SD_u5361_u5199_u5165_u5185_u6838_u548C_u7CFB_u7EDF"><span class="toc-number">4.</span> <span class="toc-text">向SD卡写入内核和系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD_u5361_u5206_u533A"><span class="toc-number">4.1.</span> <span class="toc-text">SD卡分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165Android_u955C_u50CF"><span class="toc-number">4.2.</span> <span class="toc-text">写入Android镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53EF_u80FD_u9047_u5230_u7684_u95EE_u9898"><span class="toc-number">5.</span> <span class="toc-text">可能遇到的问题</span></a></li></ol>
  
   </div>
 
