@@ -4,30 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>git学习 | elicec</title>
+    <title>外部apk编译进Android系统镜像 | elicec</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="elicec">
     
 
     
-    <meta name="description" content="git：强大的分布式版本管理工具
-命令详解git rebase即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。
-应用场景：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自">
+    <meta name="description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
+#方法一#
+
+编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
+解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
+执行make snod命令，将a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习">
-<meta property="og:url" content="http://yoursite.com/2016/02/02/git学习/index.html">
+<meta property="og:title" content="外部apk编译进Android系统镜像">
+<meta property="og:url" content="http://yoursite.com/2016/02/22/外部apk编译进Android系统镜像/index.html">
 <meta property="og:site_name" content="elicec">
-<meta property="og:description" content="git：强大的分布式版本管理工具
-命令详解git rebase即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。
-应用场景：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自">
-<meta property="og:image" content="http://i.imgur.com/cZqOS3Y.png">
-<meta property="og:updated_time" content="2016-02-02T09:50:21.605Z">
+<meta property="og:description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
+#方法一#
+
+编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
+解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
+执行make snod命令，将a">
+<meta property="og:updated_time" content="2016-02-22T08:37:17.218Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习">
-<meta name="twitter:description" content="git：强大的分布式版本管理工具
-命令详解git rebase即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。
-应用场景：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自">
+<meta name="twitter:title" content="外部apk编译进Android系统镜像">
+<meta name="twitter:description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
+#方法一#
+
+编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
+解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
+执行make snod命令，将a">
 
     
     <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
@@ -85,14 +93,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/02/02/git学习/" title="git学习" itemprop="url">git学习</a>
+      <a href="/2016/02/22/外部apk编译进Android系统镜像/" title="外部apk编译进Android系统镜像" itemprop="url">外部apk编译进Android系统镜像</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-02T09:50:21.605Z" itemprop="datePublished"> 发表于 2016-02-02</time>
+    <time datetime="2016-02-22T08:37:17.218Z" itemprop="datePublished"> 发表于 2016-02-22</time>
     
   </p>
 </header>
@@ -101,14 +109,35 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u547D_u4EE4_u8BE6_u89E3"><span class="toc-number">1.</span> <span class="toc-text">命令详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git_rebase"><span class="toc-number">1.1.</span> <span class="toc-text">git rebase</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<p>git：强大的分布式版本管理工具</p>
-<h2 id="u547D_u4EE4_u8BE6_u89E3"><a href="#u547D_u4EE4_u8BE6_u89E3" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="git_rebase"><a href="#git_rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>即重新定义（re）起点（base）的作用，即重新定义分支的版本库状态。</p>
-<p><strong>应用场景</strong>：当我们的项目有多个分支的时候。我们除了在本地开发的时候可能会“回溯”外，也常常会将和自己并行开发的别人的分支修改添加到自 己本地来。这种情况下很常见。作为项目管理员，肯定会不断的合并各个子项目的补丁，并将最新版本推送到公共版本库，而作为开发人员之一，提交自己的补丁之 后，往往需要将自己的工作更新到最新的版本库，也就是说把别的分支的工作包含进来。<br>理解：主要是在多分枝场景中。当我们从自己创建一个分枝的时候，并进行了多次提交。如果此时主分支也在不断前进提交。我们需要保持与主分支同步。此时就可以rebase。效果就如同我们从最新的主分支建立的分支一样。即我们分支的base变了，往前推进了，与主分支保持了一直。当然这过程可能会产生冲突，我们需要解决冲突，并rebase-continue; 他跟merge功能 基本类似，只是操作完之后的git版本结构变了。 </p>
-<p><img src="http://i.imgur.com/cZqOS3Y.png" alt=""></p>
+		<p>本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。</p>
+<p>#方法一#</p>
+<ol>
+<li>编译源码后，直接把单独的apk拷贝到编译输出目录<code>out\target\product\generic\system\app</code>中。</li>
+<li>解压出apk中的<code>.so</code>文件（一般在lib目录，注意选择相应的CPU架构目录），复制到<code>system/lib</code>目录中去。</li>
+<li>执行make snod命令，将apk打包进system.img。</li>
+</ol>
+<p>注意：不是所有的apk都有动态库<code>.so</code>文件。没有的话直接跳过第二步。</p>
+<p>#方法二#</p>
+<ol>
+<li><p>新建一个文件夹目录，用来存放apk文件 </p>
+<pre><code>mkdir packages/apps/Prebuilt_apps 
+cd packages/apps/Prebuilt_apps 
+</code></pre></li>
+<li><p>在Prebuilt_apps中新建Android.mk文件,并写入以下内容：</p>
+<pre><code>LOCAL_PATH := $(call my-dir) 
+ include $(CLEAR_VARS) 
+LOCAL_POST_PROCESS_COMMAND := $(shell cp -r $(LOCAL_PATH)/*.apk $(TARGET_OUT)/app/) 
+</code></pre></li>
+<li><p>把需要编译的apk拷贝到目录Prebuilt_apps下，执行make(注意单独编译这一个模块即可) ，Prebuilt_apps中的apk就会考被到out\target\product\generic\system\app中。 </p>
+</li>
+<li>执行make snod 。完成。 </li>
+</ol>
+<p><strong>注意：</strong>此方法执行make clean 后，再次make 完毕，只需要make snod即可(make snod 本质上是将system文件夹打包为system.img，有时make后，out\target\product\generic\system\app没有需要添加的apk，此时再make一次即可，速度很快)。</p>
+<p>同方法一，如有lib(.so)文件，将apk解压后，把 .so文件copy到system\lib下</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -116,13 +145,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/git笔记/">git笔记</a>
+  <a class="article-category-link" href="/categories/Android-底层/">Android 底层</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git笔记/">git笔记</a>
+  <span></span> <a href="/tags/Android-底层/">Android 底层</a>
   </div>
 
 </div>
@@ -131,7 +160,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/02/02/git学习/" data-title="git学习 | elicec" data-tsina="2740254071" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/02/22/外部apk编译进Android系统镜像/" data-title="外部apk编译进Android系统镜像 | elicec" data-tsina="2740254071" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -144,19 +173,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/02/18/树莓派2移植Android系统/" title="raspberryPi2 移植Android系统">
-  <strong>上一篇：</strong><br/>
-  <span>
-  raspberryPi2 移植Android系统</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/02/02/Android系统的build过程分析/"  title="Android系统的build过程分析">
+<a href="/2016/02/18/树莓派2移植Android系统/"  title="raspberryPi2 移植Android系统">
  <strong>下一篇：</strong><br/> 
- <span>Android系统的build过程分析
+ <span>raspberryPi2 移植Android系统
 </span>
 </a>
 </div>
@@ -165,7 +186,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/02/02/git学习/" data-title="git学习" data-url="http://yoursite.com/2016/02/02/git学习/"></div>
+	<div class="ds-thread" data-thread-key="2016/02/22/外部apk编译进Android系统镜像/" data-title="外部apk编译进Android系统镜像" data-url="http://yoursite.com/2016/02/22/外部apk编译进Android系统镜像/"></div>
 </section>
 
 
@@ -175,7 +196,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u547D_u4EE4_u8BE6_u89E3"><span class="toc-number">1.</span> <span class="toc-text">命令详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git_rebase"><span class="toc-number">1.1.</span> <span class="toc-text">git rebase</span></a></li></ol></li></ol>
+ 
  
   </div>
 
