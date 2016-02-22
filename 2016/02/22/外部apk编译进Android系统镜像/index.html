@@ -12,30 +12,27 @@
 
     
     <meta name="description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
-#方法一#
-
+方法一
 编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
 解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
-执行make snod命令，将a">
+执行make snod命令，将apk打">
 <meta property="og:type" content="article">
 <meta property="og:title" content="外部apk编译进Android系统镜像">
 <meta property="og:url" content="http://yoursite.com/2016/02/22/外部apk编译进Android系统镜像/index.html">
 <meta property="og:site_name" content="elicec">
 <meta property="og:description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
-#方法一#
-
+方法一
 编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
 解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
-执行make snod命令，将a">
-<meta property="og:updated_time" content="2016-02-22T08:37:17.218Z">
+执行make snod命令，将apk打">
+<meta property="og:updated_time" content="2016-02-22T08:40:38.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="外部apk编译进Android系统镜像">
 <meta name="twitter:description" content="本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。
-#方法一#
-
+方法一
 编译源码后，直接把单独的apk拷贝到编译输出目录out\target\product\generic\system\app中。
 解压出apk中的.so文件（一般在lib目录，注意选择相应的CPU架构目录），复制到system/lib目录中去。
-执行make snod命令，将a">
+执行make snod命令，将apk打">
 
     
     <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
@@ -100,7 +97,7 @@
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-22T08:37:17.218Z" itemprop="datePublished"> 发表于 2016-02-22</time>
+    <time datetime="2016-02-22T08:40:38.331Z" itemprop="datePublished"> 发表于 2016-02-22</time>
     
   </p>
 </header>
@@ -109,20 +106,18 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u65B9_u6CD5_u4E00"><span class="toc-number">1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u65B9_u6CD5_u4E8C"><span class="toc-number">2.</span> <span class="toc-text">方法二</span></a></li></ol>
 		
 		</div>
 		
 		<p>本文目的:描述了如何将第三方或者自己编译好的apk包编译进入Android系统镜像system.img中去。</p>
-<p>#方法一#</p>
-<ol>
+<h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><ol>
 <li>编译源码后，直接把单独的apk拷贝到编译输出目录<code>out\target\product\generic\system\app</code>中。</li>
 <li>解压出apk中的<code>.so</code>文件（一般在lib目录，注意选择相应的CPU架构目录），复制到<code>system/lib</code>目录中去。</li>
 <li>执行make snod命令，将apk打包进system.img。</li>
 </ol>
 <p>注意：不是所有的apk都有动态库<code>.so</code>文件。没有的话直接跳过第二步。</p>
-<p>#方法二#</p>
-<ol>
+<h1 id="u65B9_u6CD5_u4E8C"><a href="#u65B9_u6CD5_u4E8C" class="headerlink" title="方法二"></a>方法二</h1><ol>
 <li><p>新建一个文件夹目录，用来存放apk文件 </p>
 <pre><code>mkdir packages/apps/Prebuilt_apps 
 cd packages/apps/Prebuilt_apps 
@@ -196,7 +191,7 @@ LOCAL_POST_PROCESS_COMMAND := $(shell cp -r $(LOCAL_PATH)/*.apk $(TARGET_OUT)/ap
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u65B9_u6CD5_u4E00"><span class="toc-number">1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u65B9_u6CD5_u4E8C"><span class="toc-number">2.</span> <span class="toc-text">方法二</span></a></li></ol>
  
   </div>
 
