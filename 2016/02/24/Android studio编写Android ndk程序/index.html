@@ -19,7 +19,7 @@ NDK的下载和配置下载在Android developer官方网站可以很容易下载
 <meta property="og:site_name" content="elicec">
 <meta property="og:description" content="开发环境：Ubuntu_14.04_64bit + Android studio 1.4 + ndk_r10b (windows系统下基本类似)
 NDK的下载和配置下载在Android developer官方网站可以很容易下载到NDK的压缩包，但是由于被墙，国内无法访问。推荐一个国内的Android developer镜像网站，基本跟官方一模一样，只是多了一丁点广告~。http://wear.te">
-<meta property="og:updated_time" content="2016-02-24T08:02:25.607Z">
+<meta property="og:updated_time" content="2016-02-24T08:04:39.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android studio编写Android ndk程序">
 <meta name="twitter:description" content="开发环境：Ubuntu_14.04_64bit + Android studio 1.4 + ndk_r10b (windows系统下基本类似)
@@ -88,7 +88,7 @@ NDK的下载和配置下载在Android developer官方网站可以很容易下载
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-02-24T08:02:25.607Z" itemprop="datePublished"> 发表于 2016-02-24</time>
+    <time datetime="2016-02-24T08:04:39.694Z" itemprop="datePublished"> 发表于 2016-02-24</time>
     
   </p>
 </header>
@@ -97,7 +97,7 @@ NDK的下载和配置下载在Android developer官方网站可以很容易下载
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NDK_u7684_u4E0B_u8F7D_u548C_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">NDK的下载和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D"><span class="toc-number">1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_u7F6ENDK"><span class="toc-number">1.2.</span> <span class="toc-text">配置NDK</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NDK_u7684_u4E0B_u8F7D_u548C_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">NDK的下载和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D"><span class="toc-number">1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_u7F6ENDK"><span class="toc-number">1.2.</span> <span class="toc-text">配置NDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7F16_u5199NDK_u4EE3_u7801"><span class="toc-number">2.</span> <span class="toc-text">编写NDK代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B0_u5EFAjni_u6587_u4EF6_u5939_u5B58_u653E_u6E90_u6587_u4EF6"><span class="toc-number">2.1.</span> <span class="toc-text">新建jni文件夹存放源文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u5199-c_u548C-h_u6587_u4EF6"><span class="toc-number">2.2.</span> <span class="toc-text">编写.c和.h文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u7A0B_u5E8F_u4E2D_u8C03_u7528NDK"><span class="toc-number">2.3.</span> <span class="toc-text">在程序中调用NDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
@@ -124,10 +124,12 @@ NDK的下载和配置下载在Android developer官方网站可以很容易下载
         abiFilters &quot;armeabi&quot;,&quot;armeabi-v7a&quot;,&quot;x86&quot;
     }
 }
-</code></pre><p>其中<strong>nkd{ }</strong>为新添加的内容。<br>#编写NDK代码#<br>以下一个最简单的例子讲解，利用NDK返回一个字符串供JAVA调用。<br>##新建jni文件夹存放源文件##<br>在app模块或者你的其他模块目录右键new-&gt;folder-&gt;Jnifolder。则会在Java同级目录自动新建一个名为jni的文件夹，我们的所有c源文件都将放在里面。<br>##编写.c和.h文件##</p>
+</code></pre><p>其中<strong>nkd{ }</strong>为新添加的内容。</p>
 </li>
 </ol>
-<ul>
+<h1 id="u7F16_u5199NDK_u4EE3_u7801"><a href="#u7F16_u5199NDK_u4EE3_u7801" class="headerlink" title="编写NDK代码"></a>编写NDK代码</h1><p>以下一个最简单的例子讲解，利用NDK返回一个字符串供JAVA调用。</p>
+<h2 id="u65B0_u5EFAjni_u6587_u4EF6_u5939_u5B58_u653E_u6E90_u6587_u4EF6"><a href="#u65B0_u5EFAjni_u6587_u4EF6_u5939_u5B58_u653E_u6E90_u6587_u4EF6" class="headerlink" title="新建jni文件夹存放源文件"></a>新建jni文件夹存放源文件</h2><p>在app模块或者你的其他模块目录右键new-&gt;folder-&gt;Jnifolder。则会在Java同级目录自动新建一个名为jni的文件夹，我们的所有c源文件都将放在里面。</p>
+<h2 id="u7F16_u5199-c_u548C-h_u6587_u4EF6"><a href="#u7F16_u5199-c_u548C-h_u6587_u4EF6" class="headerlink" title="编写.c和.h文件"></a>编写.c和.h文件</h2><ul>
 <li><p>在上面新建的jni文件夹新建jnitest.h文件</p>
 <pre><code>#include &lt;jni.h&gt;
 /* Header for class com_example_hellojni_HelloJni */
@@ -171,8 +173,7 @@ include $(BUILD_SHARED_LIBRARY)
 </li>
 </ul>
 <p><code>/home/van/AndroidStudioProjects/jniteset/app/build/intermediates/ndk/debug/lib/armeabi</code><br>生成<code>.so</code>文件，Java中就是载入此so文件进行调用方法的。</p>
-<p>##在程序中调用NDK##</p>
-<p>MainActivity.java</p>
+<h2 id="u5728_u7A0B_u5E8F_u4E2D_u8C03_u7528NDK"><a href="#u5728_u7A0B_u5E8F_u4E2D_u8C03_u7528NDK" class="headerlink" title="在程序中调用NDK"></a>在程序中调用NDK</h2><p>MainActivity.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.example.van.jniteset;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">printString</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">    System.loadLibrary(<span class="string">"JniTest"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> TextView tv;</span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">    setSupportActionBar(toolbar);</span><br><span class="line">    tv=(TextView)findViewById(R.id.txt1);</span><br><span class="line">    tv.setText(printString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>重要的两处</p>
 <ol>
@@ -183,8 +184,7 @@ include $(BUILD_SHARED_LIBRARY)
   }
 </code></pre></li>
 </ol>
-<p>#总结</p>
-<ol>
+<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><ol>
 <li>配置NDK相关gradle文件，主要是NDK路径和build选项</li>
 <li>在jni文件夹中添加C源文件和Android.mk文件，注意方法名的命名规则</li>
 <li>编译生成.so文件</li>
@@ -248,7 +248,7 @@ include $(BUILD_SHARED_LIBRARY)
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NDK_u7684_u4E0B_u8F7D_u548C_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">NDK的下载和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D"><span class="toc-number">1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_u7F6ENDK"><span class="toc-number">1.2.</span> <span class="toc-text">配置NDK</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NDK_u7684_u4E0B_u8F7D_u548C_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">NDK的下载和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D"><span class="toc-number">1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_u7F6ENDK"><span class="toc-number">1.2.</span> <span class="toc-text">配置NDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u7F16_u5199NDK_u4EE3_u7801"><span class="toc-number">2.</span> <span class="toc-text">编写NDK代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B0_u5EFAjni_u6587_u4EF6_u5939_u5B58_u653E_u6E90_u6587_u4EF6"><span class="toc-number">2.1.</span> <span class="toc-text">新建jni文件夹存放源文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u5199-c_u548C-h_u6587_u4EF6"><span class="toc-number">2.2.</span> <span class="toc-text">编写.c和.h文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u7A0B_u5E8F_u4E2D_u8C03_u7528NDK"><span class="toc-number">2.3.</span> <span class="toc-text">在程序中调用NDK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
