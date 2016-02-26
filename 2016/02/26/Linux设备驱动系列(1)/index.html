@@ -1,0 +1,521 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux设备驱动系列(1)-简介 | elicec</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="elicec">
+    
+
+    
+    <meta name="description" content="前言Linux设备驱动在Linux kernel中扮演着重要的作用。它完全隐藏了一个具体硬件设备如何工作的细节。在Linux中，用户是通过统一的标准化的方式来操作不同的硬件设备，而Linux设备驱动的作用就是将这些统一的调用如何映射到各式各样的具体设备。Linux设备驱动能够以模块的方式在内核运行时加载，并且可以独立于kernel编译。这种模块化的方式使得Linux设备驱动更易于去实现。
+本系列博">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux设备驱动系列(1)-简介">
+<meta property="og:url" content="http://yoursite.com/2016/02/26/Linux设备驱动系列(1)/index.html">
+<meta property="og:site_name" content="elicec">
+<meta property="og:description" content="前言Linux设备驱动在Linux kernel中扮演着重要的作用。它完全隐藏了一个具体硬件设备如何工作的细节。在Linux中，用户是通过统一的标准化的方式来操作不同的硬件设备，而Linux设备驱动的作用就是将这些统一的调用如何映射到各式各样的具体设备。Linux设备驱动能够以模块的方式在内核运行时加载，并且可以独立于kernel编译。这种模块化的方式使得Linux设备驱动更易于去实现。
+本系列博">
+<meta property="og:updated_time" content="2016-02-26T11:08:28.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux设备驱动系列(1)-简介">
+<meta name="twitter:description" content="前言Linux设备驱动在Linux kernel中扮演着重要的作用。它完全隐藏了一个具体硬件设备如何工作的细节。在Linux中，用户是通过统一的标准化的方式来操作不同的硬件设备，而Linux设备驱动的作用就是将这些统一的调用如何映射到各式各样的具体设备。Linux设备驱动能够以模块的方式在内核运行时加载，并且可以独立于kernel编译。这种模块化的方式使得Linux设备驱动更易于去实现。
+本系列博">
+
+    
+    <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="elicec">elicec</a></h1>
+				<h2 class="blog-motto">elicec&#39;s blog</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/">简历</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/26/Linux设备驱动系列(1)/" title="Linux设备驱动系列(1)-简介" itemprop="url">Linux设备驱动系列(1)-简介</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-26T11:08:28.585Z" itemprop="datePublished"> 发表于 2016-02-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u5185_u6838_u7684_u7EC4_u6210"><span class="toc-number">2.</span> <span class="toc-text">Linux内核的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u8BBE_u5907_u9A71_u52A8_u7684_u4F5C_u7528"><span class="toc-number">3.</span> <span class="toc-text">Linux设备驱动的作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u8BBE_u5907_u7684_u79CD_u7C7B"><span class="toc-number">4.</span> <span class="toc-text">Linux设备的种类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>Linux设备驱动在Linux kernel中扮演着重要的作用。它完全隐藏了一个具体硬件设备如何工作的细节。在Linux中，用户是通过统一的标准化的方式来操作不同的硬件设备，而Linux设备驱动的作用就是将这些统一的调用如何映射到各式各样的具体设备。Linux设备驱动能够以模块的方式在内核运行时加载，并且可以独立于kernel编译。这种模块化的方式使得Linux设备驱动更易于去实现。</p>
+<p>本系列博客将描述如何去写自己的设备驱动。文章所有的实例都将尽量采取与具体设备无关的原则，因为对于任何实际设备其基本原理和技术手段都是相同。只要掌握了最基础的原理，才能在面对实际设备时以不变应万变。</p>
+<h1 id="Linux_u5185_u6838_u7684_u7EC4_u6210"><a href="#Linux_u5185_u6838_u7684_u7EC4_u6210" class="headerlink" title="Linux内核的组成"></a>Linux内核的组成</h1><p>在一个Unix系统中，当多个进程并发执行时，每一个进程都会请求系统的资源（处理器资源、内存资源、网络资源以及其他各种资源）。Linux kernel一个重要使命就是如何处理分配这些资源请求。Linux kernel按照功能可以划分为以下几个部分：</p>
+<ul>
+<li>进程管理</li>
+</ul>
+<p>首先，内核负责创建和销毁进程；其次，内核需要处理进程和外部的连接（输入和输出）；另外，进程间的通信（通过信号量，管道等）也是由内核完成。最后，内核还负责进程的调度，控制各个进程如何共享CPU的资源。</p>
+<ul>
+<li>内存管理</li>
+</ul>
+<p>内存是计算机中非常重要的资源，如何高效的处理内存资源严重影响着计算机性能。以可用内存资源上限为基础，Linux内核为所有的进程构建了一套虚拟内存地址空间。内核的不同部分通过各个内存管理子系统调用一些列内存相关函数来相互作用。这些操作函数包括最简单的 malloc/free以及其他非常复杂。</p>
+<ul>
+<li>文件系统</li>
+</ul>
+<p>Unix系统的文件系统有着非同一般的意义。几乎在Unix中所有的东西都可以看做文件。内核在非结构化的硬件平台上构建了一套结构化的文件系统。文件的使用几乎贯穿于整个Linux系统。另外，Linux系统支持多种文件系统类型，即可以在同样的物理媒介上通过不同方式来组织各种数据。比如磁盘可以格式化成Linux标准ext格式，也支持通用的fat以及其他好多格式。</p>
+<ul>
+<li>设备控制</li>
+</ul>
+<p>几乎所有的系统操作都会最终映射到一个物理设备。除了处理器，内存以及其他极少数几个设备，几乎其他所有设备控制操作是由特定代码来处理的。这些代码就被称作<strong>设备驱动</strong>。内核需要为每一个外围设备嵌入<strong>设备驱动</strong>，这也是系列文章所关注的对象。</p>
+<ul>
+<li>网络连接</li>
+</ul>
+<p>网络连接管理必须有操作系统来完成。因为大部分的网络操作不是特定于一个进程的：进入系统的报文数据都是异步的。报文在被一个进程接管前必须被接收，识别。Linux内核负责在程序和网络接口间传递报文。另外，所有的路由和地址解析也是在内核中完成的。</p>
+<h1 id="Linux_u8BBE_u5907_u9A71_u52A8_u7684_u4F5C_u7528"><a href="#Linux_u8BBE_u5907_u9A71_u52A8_u7684_u4F5C_u7528" class="headerlink" title="Linux设备驱动的作用"></a>Linux设备驱动的作用</h1><p>设备驱动的作用体现是一种<strong>机理</strong>而并非一种<strong>方案</strong>。<strong>机理</strong>及机制原理，它是抽象的原理的，<strong>方案</strong>是实施，是具体的。</p>
+<p>在Unix系统的设计上可以很好的体现出<strong>机理</strong>和<strong>方案</strong>的区别。大部分的程序设计问题可以分为两部分：“能够提供什么功能（<strong>机理</strong>）”和“如何使用这些功能<strong>方案</strong>”。如果这两部分是由一个抽象的不同部分来处理，或者由不同的程序分别处理，那么软件开发将会更加简单更易于适应特殊的需求。</p>
+<p>就设备驱动而言，同样也是被划分为<strong>机理</strong>和<strong>方案</strong>。我们在写驱动时，我们需要有这样一个观念：为硬件的操作编写内核代码，而并不会强制用户使用特定的方案去使用硬件，因为不同的用户有不同的需求。这个<strong>驱动</strong>应当是使操作硬件成为可能，而将如何使用硬件交给其他应用。这样的驱动才是灵活的。但是有时候一些方案的决定又必须去考虑的。例如，一个数字I/O驱动可能只提供了硬件对字节的处理，而这样会导致在应用时需要额外的代码来处理bit。</p>
+<p>在<strong>方案</strong>透明的驱动中有一些独有的特征。它支持同步和非同步操作，能够被打开多次，能够完全利用硬件的所有能力。这样的架构一方面使使用者友好，另一方面可以简化设计者<strong>方案相关</strong>操作。</p>
+<h1 id="Linux_u8BBE_u5907_u7684_u79CD_u7C7B"><a href="#Linux_u8BBE_u5907_u7684_u79CD_u7C7B" class="headerlink" title="Linux设备的种类"></a>Linux设备的种类</h1><p>Linux将设备驱动划分为最基本的三种类型：<strong>字符设备</strong>，<strong>块设备</strong>，<strong>网络设备</strong>。每一个驱动模块一般都是实现了其中一种类型。</p>
+<ul>
+<li>字符设备</li>
+</ul>
+<p>字符设备是可以由字节流来处理的一类设备。字符设备驱动负责完成各种操作，通常至少包括：open，close，read，和write。常见的字符设备包括文本控制台(/dev/console)和串口(/dev/ttyS0)。它们都是流形式的典型。字符设备是通过文件系统节点来操作的，例如/dev/tty1,以及/dev/lp0。字符设备和普通文件的唯一不同就是普通文件可以随机读取，而字符设备文件只能顺序读取。但是也会存在看起来像数据区域的字符设备，可以在其中随机读写。这通常应用在图像采集卡中，应用可以通过mmap或者lseek操作整个图片。</p>
+<ul>
+<li>块设备</li>
+</ul>
+<p>同字符设备一样，块设备也是通过/dev目录下的文件节点来操作的。常见的块设备包括磁盘，可以作为一个文件系统的宿主。在Unix系统中，块设备在I/O操作中通常传输的数据块是成块的，例如512byte或者其他块大下。而Linux允许块设备像字符设备那样每次操作任意字节的。因此，块设备和字节设备的区别通常体现在内部内核对数据的管理方式。具体体现在内核/驱动的软件接口上的不同。</p>
+<ul>
+<li>网络设备</li>
+</ul>
+<p>任何网络相关的事务是通过接口完成的。即一个能与其他主机交换数据的设备。通常这个设备是一个具体的硬件，但有时候也会是纯粹的软件。例如本地回环接口。网络接口是由内核的网络子系统驱动，主要负责数据包的发送和接收，并且子系统是不需要知道每个网络事务是如何映射到具体发送的每个网络包的。大部分网络连接是面向流的，但是网络设备通常设计用来传输和接收网络包，网络驱动是并不知道具体连接的。<br>网络不是面向流的设备，因此它并不是简单的被映射到文件系统的一个节点像/dev/tty1。Unix的实现方式仍然是分配一个特定名字（例如eht0），但是在文件系统中并没有实体。它同内核的通讯方式与字符设备和块设备也完全不同，并不是read或者write。而是内核中被称为数据包传输的方法。</p>
+<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><hr>
+<p>本文对Linux系统内核做了概括介绍，对设备驱动的作用和原理做了简要介绍</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux设备驱动/">Linux设备驱动</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux设备驱动/">Linux设备驱动</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/02/26/Linux设备驱动系列(1)/" data-title="Linux设备驱动系列(1)-简介 | elicec" data-tsina="2740254071" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/24/Android studio编写Android ndk程序/"  title="Android studio编写Android ndk程序">
+ <strong>下一篇：</strong><br/> 
+ <span>Android studio编写Android ndk程序
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/02/26/Linux设备驱动系列(1)/" data-title="Linux设备驱动系列(1)-简介" data-url="http://yoursite.com/2016/02/26/Linux设备驱动系列(1)/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u8A00"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u5185_u6838_u7684_u7EC4_u6210"><span class="toc-number">2.</span> <span class="toc-text">Linux内核的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u8BBE_u5907_u9A71_u52A8_u7684_u4F5C_u7528"><span class="toc-number">3.</span> <span class="toc-text">Linux设备驱动的作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux_u8BBE_u5907_u7684_u79CD_u7C7B"><span class="toc-number">4.</span> <span class="toc-text">Linux设备的种类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-底层/" title="Android 底层">Android 底层<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux设备驱动/" title="Linux设备驱动">Linux设备驱动<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git笔记/" title="git笔记">git笔记<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android-底层/" title="Android 底层">Android 底层<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git笔记/" title="git笔记">git笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux设备驱动/" title="Linux设备驱动">Linux设备驱动<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2740254071&verifier=d7633bec&dpc=1"></iframe>
+</div>
+
+
+  
+<div class="donate">
+<p class="asidetitle">捐赠</p>
+<div>
+<li>微信扫一扫，捐助支持，谢谢！</li>
+<a href="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg" title="" class="fancybox" rel="gallery3"><img width="100%" src="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg"></a>
+</div>
+</div>
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m elicec in China. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2740254071" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/elicec" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:elicec@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="elicec">elicec</a>
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<br/>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"elicec"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
