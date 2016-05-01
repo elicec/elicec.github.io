@@ -1,0 +1,541 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Markdown常用基本语法 | elicec</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="elicec">
+    
+
+    
+    <meta name="description" content="现在，互联网上存在各式各样的文档，帮助说明，博客文章等等。为了便于在web上传播查看，这些文本中有一大部分采用了Markdown语法格式。国内很多著名的blog也都支持Markdown格式的博客文章。利用github pages搭建的网站就是采用Markdown格式管理文档的。当然hexo也自然不例外。为了更方便的维护hexo的文章，特此记录Markdown最基本语法。有了Markdown，写出漂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown常用基本语法">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/Markdown常用基本语法/index.html">
+<meta property="og:site_name" content="elicec">
+<meta property="og:description" content="现在，互联网上存在各式各样的文档，帮助说明，博客文章等等。为了便于在web上传播查看，这些文本中有一大部分采用了Markdown语法格式。国内很多著名的blog也都支持Markdown格式的博客文章。利用github pages搭建的网站就是采用Markdown格式管理文档的。当然hexo也自然不例外。为了更方便的维护hexo的文章，特此记录Markdown最基本语法。有了Markdown，写出漂">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/my_head.jpg">
+<meta property="og:updated_time" content="2016-05-01T08:16:55.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown常用基本语法">
+<meta name="twitter:description" content="现在，互联网上存在各式各样的文档，帮助说明，博客文章等等。为了便于在web上传播查看，这些文本中有一大部分采用了Markdown语法格式。国内很多著名的blog也都支持Markdown格式的博客文章。利用github pages搭建的网站就是采用Markdown格式管理文档的。当然hexo也自然不例外。为了更方便的维护hexo的文章，特此记录Markdown最基本语法。有了Markdown，写出漂">
+
+    
+    <link rel="alternative" href="/atom.xml" title="elicec" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="elicec">elicec</a></h1>
+				<h2 class="blog-motto">elicec&#39;s blog</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/">简历</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/01/Markdown常用基本语法/" title="Markdown常用基本语法" itemprop="url">Markdown常用基本语法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-01T07:11:49.000Z" itemprop="datePublished"> 发表于 2016-05-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B80_u4ECB"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u9898"><span class="toc-number">2.1.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u5B57_u6807_u8BB0"><span class="toc-number">2.2.</span> <span class="toc-text">文字标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u94FE_u63A5"><span class="toc-number">2.3.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65E0_u5E8F_u5217_u8868"><span class="toc-number">2.4.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6709_u5E8F_u5217_u8868"><span class="toc-number">2.5.</span> <span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u5B57_u5F15_u7528"><span class="toc-number">2.6.</span> <span class="toc-text">文字引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EE3_u7801_u5757"><span class="toc-number">2.7.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u63D2_u5165_u56FE_u50CF"><span class="toc-number">2.8.</span> <span class="toc-text">插入图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u663E_u793A_u5185_u5BB9_u76EE_u5F55"><span class="toc-number">2.9.</span> <span class="toc-text">显示内容目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u5206_u7C7B"><span class="toc-number">2.10.</span> <span class="toc-text">标签分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EE3_u7801_u9AD8_u4EAE"><span class="toc-number">2.11.</span> <span class="toc-text">代码高亮</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>现在，互联网上存在各式各样的文档，帮助说明，博客文章等等。为了便于在web上传播查看，这些文本中有一大部分采用了Markdown语法格式。国内很多著名的blog也都支持Markdown格式的博客文章。利用github pages搭建的网站就是采用Markdown格式管理文档的。当然hexo也自然不例外。为了更方便的维护hexo的文章，特此记录Markdown最基本语法。有了Markdown，写出漂亮的文档将显得轻而易举。文末也会推荐几款强大的Markdown的IDE环境，虽然使用它们可以不用你去关心Markdown语法。然而事实上Markdown的语法确实是非常简单，完全可以在vim上就写出漂亮的文章出来。</p>
+<h2 id="u7B80_u4ECB"><a href="#u7B80_u4ECB" class="headerlink" title="简介"></a>简介</h2><p>Markdown是一种轻量级的<code>标记语言</code>，他的优点真的很多，也真的很轻很轻。千万不要被语法，语言这类词汇吓唬到。他的语法实质上非常简单，即使完全没有任何编程经验，也没关系。实际上也是，现在很多自由攥稿人和写作爱好者都用Markdown。在Markdown中常用的标记符号估计不会超过10个。比起HTML的标记语言少太多。学习成本也是非常低的，毫不夸张的说，花20分钟，你完全可以掌握，本文主要介绍了Markdown中最基本也是最常用的一些语法。</p>
+<h2 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h2><h3 id="u6807_u9898"><a href="#u6807_u9898" class="headerlink" title="标题"></a>标题</h3><p>格式：若干个#+空格+标题名字，例如：</p>
+<p>一级标题:<code># 一级标题</code><br>二级标题：<code>## 二级标题</code><br>三级标题: <code>### 三级标题</code><br>以此类推..</p>
+<h3 id="u6587_u5B57_u6807_u8BB0"><a href="#u6587_u5B57_u6807_u8BB0" class="headerlink" title="文字标记"></a>文字标记</h3><p>使用 <em> 包裹文字表示斜体，使用 *</em> 包裹文字表示粗体,使用<code>代码</code>表示行内代码,使用~~ 包括文字表示删除线。</p>
+<p>例如：<em>斜体</em>,<strong>粗体</strong>,<code>code</code>,<del>删除线</del></p>
+<h3 id="u94FE_u63A5"><a href="#u94FE_u63A5" class="headerlink" title="链接"></a>链接</h3><p>格式：使用[描述](链接地址)来为文字添加链接<br>实例：去往我的首页的连接为<a href="/www.elicec.com">我的blog</a></p>
+<h3 id="u65E0_u5E8F_u5217_u8868"><a href="#u65E0_u5E8F_u5217_u8868" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 - 表示无序列表</p>
+<p>实例：</p>
+<ul>
+<li>无序列表</li>
+<li>无序列表</li>
+<li>无序列表</li>
+</ul>
+<h3 id="u6709_u5E8F_u5217_u8868"><a href="#u6709_u5E8F_u5217_u8868" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用数字和点号表示有序列表，有个小技巧是你可以全部使用 1+点号，Markdown会自动累加序号。</p>
+<p>实例：</p>
+<ol>
+<li>有序列表一</li>
+<li>有序列表二</li>
+<li>有序列表三</li>
+</ol>
+<h3 id="u6587_u5B57_u5F15_u7528"><a href="#u6587_u5B57_u5F15_u7528" class="headerlink" title="文字引用"></a>文字引用</h3><p>使用 &gt;  表示文字的引用，例如：</p>
+<blockquote>
+<p>本文参考自Markdown简明手册</p>
+</blockquote>
+<h3 id="u4EE3_u7801_u5757"><a href="#u4EE3_u7801_u5757" class="headerlink" title="代码块"></a>代码块</h3><p>使用四个空格缩进表示代码块，例如：</p>
+<pre><code>int main()
+{
+  printf(&quot;hello word&quot;);
+  return 0;
+}
+</code></pre><h3 id="u63D2_u5165_u56FE_u50CF"><a href="#u63D2_u5165_u56FE_u50CF" class="headerlink" title="插入图像"></a>插入图像</h3><p>使用 ![描述](图片链接地址) 插入图像。</p>
+<p>实例：</p>
+<p><img src="https://www.zybuluo.com/static/img/my_head.jpg" alt="我的头像"></p>
+<h3 id="u663E_u793A_u5185_u5BB9_u76EE_u5F55"><a href="#u663E_u793A_u5185_u5BB9_u76EE_u5F55" class="headerlink" title="显示内容目录"></a>显示内容目录</h3><p>在段落中填写<code>[TOC]</code> 以显示全文内容的目录结构</p>
+<p>[TOC]</p>
+<h3 id="u6807_u7B7E_u5206_u7C7B"><a href="#u6807_u7B7E_u5206_u7C7B" class="headerlink" title="标签分类"></a>标签分类</h3><p>一般在文档头部使用 tags:android java来表示标签，二用category: android  来表示文章分类。</p>
+<h3 id="u4EE3_u7801_u9AD8_u4EAE"><a href="#u4EE3_u7801_u9AD8_u4EAE" class="headerlink" title="代码高亮"></a>代码高亮</h3><ol>
+<li><p>非代码，不高亮\ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
+<p>$ sudo apt-get install vim </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. &#20195;&#30721;&#39640;&#20142;  \```c</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello word"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Markdown基本语法/">Markdown基本语法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Markdown/">Markdown</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/01/Markdown常用基本语法/" data-title="Markdown常用基本语法 | elicec" data-tsina="2740254071" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/01/Android系统中Makefile的编写-md/"  title="Android系统中Makefile的编写">
+ <strong>下一篇：</strong><br/> 
+ <span>Android系统中Makefile的编写
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/05/01/Markdown常用基本语法/" data-title="Markdown常用基本语法" data-url="http://yoursite.com/2016/05/01/Markdown常用基本语法/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B80_u4ECB"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u9898"><span class="toc-number">2.1.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u5B57_u6807_u8BB0"><span class="toc-number">2.2.</span> <span class="toc-text">文字标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u94FE_u63A5"><span class="toc-number">2.3.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65E0_u5E8F_u5217_u8868"><span class="toc-number">2.4.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6709_u5E8F_u5217_u8868"><span class="toc-number">2.5.</span> <span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u5B57_u5F15_u7528"><span class="toc-number">2.6.</span> <span class="toc-text">文字引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EE3_u7801_u5757"><span class="toc-number">2.7.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u63D2_u5165_u56FE_u50CF"><span class="toc-number">2.8.</span> <span class="toc-text">插入图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u663E_u793A_u5185_u5BB9_u76EE_u5F55"><span class="toc-number">2.9.</span> <span class="toc-text">显示内容目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6807_u7B7E_u5206_u7C7B"><span class="toc-number">2.10.</span> <span class="toc-text">标签分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EE3_u7801_u9AD8_u4EAE"><span class="toc-number">2.11.</span> <span class="toc-text">代码高亮</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-底层/" title="Android 底层">Android 底层<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux设备驱动/" title="Linux设备驱动">Linux设备驱动<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown基本语法/" title="Markdown基本语法">Markdown基本语法<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git笔记/" title="git笔记">git笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/书籍/" title="书籍">书籍<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android-底层/" title="Android 底层">Android 底层<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux设备驱动/" title="Linux设备驱动">Linux设备驱动<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书/" title="读书">读书<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git笔记/" title="git笔记">git笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2740254071&verifier=d7633bec&dpc=1"></iframe>
+</div>
+
+
+  
+<div class="donate">
+<p class="asidetitle">捐赠</p>
+<div>
+<li>微信扫一扫，捐助支持，谢谢！</li>
+<a href="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg" title="" class="fancybox" rel="gallery3"><img width="100%" src="https://raw.githubusercontent.com/elicec/elicec.github.io/master/img/weixindonate.jpg"></a>
+</div>
+</div>
+
+
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m elicec in China. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2740254071" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/elicec" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:elicec@foxmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="elicec">elicec</a>
+		
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<br/>本站总访问量<span id="busuanzi_value_site_pv"></span>次
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"elicec"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
