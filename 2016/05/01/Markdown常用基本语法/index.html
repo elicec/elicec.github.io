@@ -20,7 +20,7 @@
 <meta property="og:description" content="最近开始使用hexo+vim+markdown，特此记录Markdown最基本语法。有了Markdown，写出漂亮的文档将显得轻而易举。文末也会推荐几款强大的Markdown的IDE环境，虽然使用它们可以不用你去关心Markdown语法。然而事实上Markdown的语法确实是非常简单，完全可以在vim上就写出漂亮的文章出来。
 简介Markdown是一种轻量级的标记语言，他的优点真的很多，也真的很轻">
 <meta property="og:image" content="https://github.com/elicec/blog_src/blob/master/themes/jacman/source/img/author.jpg">
-<meta property="og:updated_time" content="2016-05-01T08:31:53.662Z">
+<meta property="og:updated_time" content="2016-05-01T08:35:16.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown常用基本语法">
 <meta name="twitter:description" content="最近开始使用hexo+vim+markdown，特此记录Markdown最基本语法。有了Markdown，写出漂亮的文档将显得轻而易举。文末也会推荐几款强大的Markdown的IDE环境，虽然使用它们可以不用你去关心Markdown语法。然而事实上Markdown的语法确实是非常简单，完全可以在vim上就写出漂亮的文章出来。
@@ -140,10 +140,11 @@
 <p>[TOC]</p>
 <h3 id="u6807_u7B7E_u5206_u7C7B"><a href="#u6807_u7B7E_u5206_u7C7B" class="headerlink" title="标签分类"></a>标签分类</h3><p>一般在文档头部使用 tags:android java来表示标签，二用category: android  来表示文章分类。</p>
 <h3 id="u4EE3_u7801_u9AD8_u4EAE"><a href="#u4EE3_u7801_u9AD8_u4EAE" class="headerlink" title="代码高亮"></a>代码高亮</h3><ol>
-<li><p>非代码，不高亮\<figure class="highlight java"><figcaption><span>code ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>$ sudo apt-get install vim </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;1. &#20195;&#30721;&#39640;&#20142;  \```c</span><br></pre></td></tr></table></figure>
-</li>
+<li>非代码，不高亮 ```java code```</li>
+</ol>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+<ol>
+<li>代码高亮  ```c \ <code>\</code>`</li>
 </ol>
  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello word"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
