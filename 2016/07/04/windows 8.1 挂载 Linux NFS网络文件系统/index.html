@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>elicec</title>
+    <title>windows8.1 挂载Linux NFS网络文件系统 | elicec</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="elicec">
@@ -13,13 +13,13 @@
     
     <meta name="description" content="前言最近的工作涉及到android系统的修改，因为源码量大，编译时间长，因此全部操作在Linux服务器上完成。通过ssh连接Linux服务器，利用vim来编辑源码并编译。这时会有一个问题，每次编译后生成的动态库或者执行程序需要通过sftp下载回本地并通过adb命令push到android开发板，进而在测试，导致过程还是比较繁琐的。编辑-编译-下载回文件-写入设备。因此打算在服务器上搭建一个NFS网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="elicec">
+<meta property="og:title" content="windows8.1 挂载Linux NFS网络文件系统">
 <meta property="og:url" content="http://yoursite.com/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/index.html">
 <meta property="og:site_name" content="elicec">
 <meta property="og:description" content="前言最近的工作涉及到android系统的修改，因为源码量大，编译时间长，因此全部操作在Linux服务器上完成。通过ssh连接Linux服务器，利用vim来编辑源码并编译。这时会有一个问题，每次编译后生成的动态库或者执行程序需要通过sftp下载回本地并通过adb命令push到android开发板，进而在测试，导致过程还是比较繁琐的。编辑-编译-下载回文件-写入设备。因此打算在服务器上搭建一个NFS网">
-<meta property="og:updated_time" content="2016-07-04T12:37:57.290Z">
+<meta property="og:updated_time" content="2016-07-04T12:51:43.795Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="elicec">
+<meta name="twitter:title" content="windows8.1 挂载Linux NFS网络文件系统">
 <meta name="twitter:description" content="前言最近的工作涉及到android系统的修改，因为源码量大，编译时间长，因此全部操作在Linux服务器上完成。通过ssh连接Linux服务器，利用vim来编辑源码并编译。这时会有一个问题，每次编译后生成的动态库或者执行程序需要通过sftp下载回本地并通过adb命令push到android开发板，进而在测试，导致过程还是比较繁琐的。编辑-编译-下载回文件-写入设备。因此打算在服务器上搭建一个NFS网">
 
     
@@ -78,14 +78,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" title="" itemprop="url"></a>
+      <a href="/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" title="windows8.1 挂载Linux NFS网络文件系统" itemprop="url">windows8.1 挂载Linux NFS网络文件系统</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="elicec" target="_blank" itemprop="author">elicec</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-04T12:37:57.290Z" itemprop="datePublished"> 发表于 2016-07-04</time>
+    <time datetime="2016-07-04T12:51:43.795Z" itemprop="datePublished"> 发表于 2016-07-04</time>
     
   </p>
 </header>
@@ -130,6 +130,16 @@
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/工具/">工具</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/工具/">工具</a>
+  </div>
 
 </div>
 
@@ -137,7 +147,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" data-title="elicec" data-tsina="2740254071" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" data-title="windows8.1 挂载Linux NFS网络文件系统 | elicec" data-tsina="2740254071" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -163,7 +173,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" data-title="" data-url="http://yoursite.com/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/"></div>
+	<div class="ds-thread" data-thread-key="2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/" data-title="windows8.1 挂载Linux NFS网络文件系统" data-url="http://yoursite.com/2016/07/04/windows 8.1 挂载 Linux NFS网络文件系统/"></div>
 </section>
 
 
@@ -206,6 +216,10 @@
 			<li><a href="/categories/书籍/" title="书籍">书籍<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -225,6 +239,10 @@
 		
 			
 				<li><a href="/tags/读书/" title="读书">读书<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
