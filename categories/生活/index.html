@@ -1,10 +1,10 @@
 
- <!DOCTYPE HTML>
+  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>tags | elicec</title>
+    <title>分类 : 生活 | elicec</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="elicec">
@@ -13,13 +13,12 @@
     
     <meta name="description" content="elicec&apos;s blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="elicec">
+<meta property="og:url" content="http://yoursite.com/categories/生活/index.html">
 <meta property="og:site_name" content="elicec">
 <meta property="og:description" content="elicec&apos;s blog">
-<meta property="og:updated_time" content="2016-02-02T09:17:32.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="elicec">
 <meta name="twitter:description" content="elicec&apos;s blog">
 
     
@@ -72,33 +71,31 @@
 </div>
       </header>
       <div id="container">
-          
+        
+
 <div class="archive-title" >
-<h2 class="tag-icon">标签</h2>
-
-<a data-src="/tags/Android/" href="#Android" title="Android">Android<sup>1</sup></a>
-
-<a data-src="/tags/Android-底层/" href="#Android 底层" title="Android 底层">Android 底层<sup>4</sup></a>
-
-<a data-src="/tags/Linux设备驱动/" href="#Linux设备驱动" title="Linux设备驱动">Linux设备驱动<sup>2</sup></a>
-
-<a data-src="/tags/Markdown/" href="#Markdown" title="Markdown">Markdown<sup>1</sup></a>
-
-<a data-src="/tags/git笔记/" href="#git笔记" title="git笔记">git笔记<sup>1</sup></a>
-
-<a data-src="/tags/工具/" href="#工具" title="工具">工具<sup>1</sup></a>
-
-<a data-src="/tags/生活/" href="#生活" title="生活">生活<sup>1</sup></a>
-
-<a data-src="/tags/读书/" href="#读书" title="读书">读书<sup>1</sup></a>
-
+  <h2 class="category-icon">生活</h2>
+  
 </div>
-<div id="main" class="archive-part">
-<div class="all-list-box"></div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2016/07/23/lush之行/" title="lush之行" itemprop="url">
+  
+
+    <time datetime="2016-07-23T08:19:12.849Z" itemprop="datePublished">2016-07-23</time>
+
+
+    <h1 itemprop="name">lush之行</h1>
+
+  </a>
+</section>
+
+
+  </div>
 </div>
-
-
-
 
       </div>
       <footer><div id="footer" >
@@ -201,40 +198,10 @@ $(document).ready(function(){
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"elicec"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
 
 
 
 
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var list    = $('.archive-title a'),
-      box     = $('.all-list-box'),
-      first   = $('.archive-title a:first-of-type');
-      box.load(first.attr('data-src').toString()+' #archive-page');
-      first.addClass('current');
-  list.each(function(){
-    $(this).click(function(){
-      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
-      box.load(listSrc);
-      list.removeClass('current');
-      $(this).addClass('current');
-     });  
-    });
-  }); 
-</script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
